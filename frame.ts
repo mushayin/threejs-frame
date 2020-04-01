@@ -67,6 +67,12 @@ export class Frame {
     private readonly offsetX: number;
     private readonly offsetY: number;
 
+    /**
+     * 创建帧动画
+     * @param img 帧图像信息
+     * @param frame 帧动画信息
+     * @param cb 回调
+     */
     constructor(img: ImgInfo, frame: FrameInfo, cb?: () => void) {
         this.cb = cb;
         this.loop = frame.loop;
@@ -138,6 +144,8 @@ export class Frame {
 
     /**
      * 面片朝向
+     * @param position 面片位置
+     * @param normal 朝向位置
      */
     public faceTo = (position: THREE.Vector3, normal: THREE.Vector3) => {
         const pos = new THREE.Vector3().addVectors(position, normal);
