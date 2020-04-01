@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script type="module">
+        import * as THREE from "./three.module.js";
+        import { Frame } from './frame.js';
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+        camera.position.z = 50;
+
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(400, 400);
+        document.body.appendChild(renderer.domElement);
+
+        let keyFrame;
+
+        const animtion = function () {
+            requestAnimationFrame(animtion);
+            renderer.render(scene, camera);
+            if (keyFrame) {
+                keyFrame.update();
+            }
+        }
+
+        const addFrame = function () {
+            keyFrame = new Frame({ src: './sprites.png', width: 1024, height: 2048, fWidth: 128, fHeight: 128, count: 80 }, { width: 10, height: 10, duration: 1.33333, loop: true });
+            keyFrame.faceTo(new THREE.Vector3(), new THREE.Vector3(0, 0, 1));
+            keyFrame.play();
+
+            scene.add(keyFrame.mesh);
+        }
+
+        animtion();
+        addFrame();
+
+    </script>
+</body>
+
+</html>
