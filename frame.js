@@ -46,7 +46,7 @@ export class Frame {
         this.cb = cb;
         this.loop = frame.loop;
         this.count = img.count;
-        this.column = img.width/img.fWidth;
+        this.column = img.width / img.fWidth;
         this.duration = frame.duration * 60;
 
         this.offsetX = img.fWidth / img.width;
@@ -54,11 +54,13 @@ export class Frame {
 
         const geometry = new THREE.PlaneBufferGeometry(frame.width, frame.height, 1, 1);
         geometry.setAttribute('uv', new THREE.Float32BufferAttribute([0, 1, this.offsetX, 1, 0, 1 - this.offsetY, this.offsetX, 1 - this.offsetY], 2));
-        const material = new THREE.MeshLambertMaterial({
-            transparent: true,
-            emissive: 0xffffff,
+
+        const material = new THREE.SpriteMaterial({
+            color: 0xffffff,
             map: new THREE.TextureLoader().load(img.src)
         });
-        this.mesh = new THREE.Mesh(geometry, material);
+
+        this.mesh = new THREE.Sprite(material);
+        this.mesh.geometry = geometry;
     }
 }

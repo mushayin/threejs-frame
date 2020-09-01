@@ -38,7 +38,7 @@
 
         const addFrame = function () {
             keyFrame = new Frame({ src: './sprites.png', width: 1024, height: 2048, fWidth: 128, fHeight: 128, count: 80 }, { width: 10, height: 10, duration: 1.33333, loop: true });
-            keyFrame.faceTo(new THREE.Vector3(), new THREE.Vector3(0, 0, 1));
+            // keyFrame.faceTo(new THREE.Vector3(), new THREE.Vector3(0, 0, 1));
             keyFrame.play();
 
             scene.add(keyFrame.mesh);
